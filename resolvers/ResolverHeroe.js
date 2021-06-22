@@ -28,10 +28,21 @@ exports.crearHeroe = function (req, res) {
     }
 }
 
-exports.actualizarHeroe = function () {
-    
+exports.actualizarHeroe = function (req, res) {
+    const { id } = req.params; // pasar numero
+    const heroeModificado = req.body;
+    try {
+        let idcasteado = parseInt(id);
+        model.actualizarHeroe(idcasteado,heroeModificado);
+        res.status(200);
+    } catch (error) {
+        res.status(409).send(error.message);
+    }
+
 }
 
-exports.borrarHeroe =  function () {
-    
+exports.borrarHeroe =  function (req, res) {
+    const { id } = req.params; // pasar numero
+    res.send('el id que enviaste es:'+id);
+    model.borrarHeroe(parseInt(id));
 }

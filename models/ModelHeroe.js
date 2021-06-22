@@ -50,12 +50,15 @@ function leerHeroe (id = 0) {
 function actualizarHeroe (id = 0, heroe) {
     if (validarDatosActualizacion(heroe)) {
         const db = leerTodos();
+      
         const indice = db.findIndex((heroeTemp) => {
-            heroeTemp.id === id;
+            return heroeTemp.id === id;
         });
+
         if (indice !== -1) {
+          
             const heroeEncontrado = db[indice];
-            const heroeActualizado = { ...heroeEncontrado, ...heroe };
+            const heroeActualizado = {...heroeEncontrado,...heroe};
             db[indice] = heroeActualizado;
             actualizarDB(db);
         } else {
@@ -70,7 +73,7 @@ function borrarHeroe (id = 0) {
     const db = leerTodos();
     const indice = db.findIndex((heroe) => {
         return heroe.id === id;
-    })
+    });
     if (indice !== -1) {
         db.splice(indice, 1);
         actualizarDB(db);
