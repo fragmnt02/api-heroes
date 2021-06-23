@@ -42,7 +42,7 @@ exports.actualizarHeroe = function (req, res) {
 exports.borrarHeroe =  function (req, res) {
     const { id } = req.params;
     try {
-        const heroeBorrado = model.borrarHeroe(parseInt(id));
+        model.borrarHeroe(parseInt(id));
         res.status(200).json(model.leerTodos());
     } catch (error) {
         res.status(404).send(error.message);
