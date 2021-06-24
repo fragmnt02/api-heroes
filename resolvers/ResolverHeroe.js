@@ -28,10 +28,24 @@ exports.crearHeroe = function (req, res) {
     }
 }
 
-exports.actualizarHeroe = function () {
-    
+exports.actualizarHeroe = function (req, res) {
+    const actualizarHeroe = req.body;
+    const { id } = req.params;
+
+    try {
+        model.actualizarHeroe(id, actualizarHeroe);
+        res.status(200).json(id);
+    } catch (error) {
+        res.status(409).send(error.message);
+    }
 }
 
-exports.borrarHeroe =  function () {
-    
+exports.borrarHeroe =  function (req, res) {
+    const { id } = req.params;
+    try {
+        model.borrarHeroe(id);
+        res.status(200).json(id);
+    } catch (error) {
+        res.status(409).send(error.message);
+    }
 }
